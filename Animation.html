@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animating SVG</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        @keyframes line-grow {
+
+            0%,
+            100% {
+                transform: scaleX(1);
+            }
+
+            50% {
+                transform: scaleX(1.15);
+            }
+        }
+
+        .hamburger {
+            width: 500px;
+            height: 500px;
+        }
+
+        .line-1,
+        .line-2,
+        .line-3 {
+            transition: y 250ms ease-in-out 250ms, transform 250ms ease-in-out 500ms, width 250ms ease-in-out;
+        }
+
+        .hamburger:hover .line-1,
+        .hamburger:hover .line-2,
+        .hamburger:hover .line-3 {
+            animation: line-grow 400ms ease-in-out;
+        }
+
+        .hamburger:hover .line-1 {
+            transform-origin: 50% 50%;
+            animation-delay: 0ms;
+        }
+
+        .hamburger:hover .line-2 {
+            transform-origin: 50% 50%;
+            animation-delay: 200ms;
+        }
+
+        .hamburger:hover .line-3 {
+            transform-origin: 50% 50%;
+            animation-delay: 400ms;
+        }
+
+        #click-control:checked+label .line-2 {
+            width: 0px !important;
+        }
+
+        #click-control:checked+label .line-1,
+        #click-control:checked+label .line-3 {
+            y: 230px !important;
+        }
+
+        #click-control:checked+label .line-1 {
+            transform-origin: 50% 50% !important;
+            transform: rotateZ(45deg) !important;
+        }
+
+        #click-control:checked+label .line-3 {
+            transform-origin: 50% 50% !important;
+            transform: rotateZ(-45deg) !important;
+        }
+    </style>
+</head>
+
+<body>
+    <input style="display: none;" type="checkbox" name="control" id="click-control" />
+    <label for="click-control">
+        <svg class="hamburger">
+            <rect class="line-1" x="50" y="190" width="400" height="20"></rect>
+            <rect class="line-2" x="50" y="230" width="400" height="20"></rect>
+            <rect class="line-3" x="50" y="270" width="400" height="20"></rect>
+        </svg>
+    </label>
+</body>
+
+</html>
